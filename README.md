@@ -36,7 +36,7 @@ usuario selecciona el archivo a enviar donde al finalizar la carga del archivo s
 Estas imagenes son guardadas como parte del mensaje en Firestore, adicionalmente se crea una carpeta por usuario en la sección de Storage de Firestore 
 donde el nombre de la carpeta tendra su nombres y su UID generado por firebase. 
 
-![alt text](https://raw.githubusercontent.com/CarlosMaldonado1998/Examen-app-moviles/master/imagenes/storagebyUser.png)
+![alt text](https://raw.githubusercontent.com/CarlosMaldonado1998/Examen-app-moviles/master/imagenes/storageUser.png)
 
 
 ## 4 - Envio de ubicación 
