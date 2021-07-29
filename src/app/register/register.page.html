@@ -1,0 +1,86 @@
+<ion-content>
+  <div class="register-container gradient-1">
+    <div class="header">
+      <div class="title ion-text-center">
+        <label>Registrarse</label>
+      </div>
+    </div>
+
+    <div class="login-container">
+      <form
+        class="form"
+        [formGroup]="validations_form"
+        (ngSubmit)="tryRegister(validations_form.value)"
+      >
+      <ion-item>
+        <ion-label position="floating" color="primary">Nombre</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.name">
+          <div
+            class="error-message"
+            *ngIf="validations_form.get('name').hasError(validation.type) && (validations_form.get('name').dirty || validations_form.get('name').touched)"
+          >
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+
+        <ion-item>
+          <ion-label position="floating" color="primary">Email</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.email">
+            <div
+              class="error-message"
+              *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)"
+            >
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item>
+          <ion-label position="floating" color="primary">Password</ion-label>
+          <ion-input
+            type="password"
+            formControlName="password"
+            class="form-controll"
+            required
+          ></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.password">
+            <div
+              class="error-message"
+              *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)"
+            >
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="ion-text-center">
+        <ion-button
+          class="submit-btn"
+          type="submit"
+          color="secondary"
+          [disabled]="!validations_form.valid"
+          >Registrarse</ion-button
+        >
+      </div>
+      <div class="ion-text-center">
+        <label class="error-message">{{errorMessage}}</label>
+        <label class="success-message">{{successMessage}}</label>
+      </div>
+      </form>
+      <div class="ion-text-center">
+      <p class="go-to-login">
+        Ya tienes una cuenta ? <a (click)="goLoginPage()" class="a">Inicia sesión.</a>
+      </p>
+    </div>
+    </div>
+  </div>
+</ion-content>

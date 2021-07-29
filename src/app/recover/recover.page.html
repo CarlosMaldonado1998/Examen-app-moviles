@@ -1,0 +1,49 @@
+<ion-content>
+  <div class="recover-container gradient-1">
+    <div class="header">
+      <div class="title ion-text-center">
+        <label>Recuperar contraseña</label>
+      </div>
+    </div>
+
+    <div class="login-container">
+      <form
+        class="form"
+        [formGroup]="validations_form"
+        (ngSubmit)="RecoverPassword(validations_form.value)"
+      >
+        <ion-item>
+          <ion-label position="floating" color="primary">Email</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        <div class="validation-errors ion-text-center">
+          <ng-container *ngFor="let validation of validation_messages.email">
+            <div
+              class="error-message"
+              *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)"
+            >
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <div class="ion-text-center fade-in">
+          <ion-button
+            color="secondary"
+            class="submit-btn"
+            type="submit"
+            [disabled]="!validations_form.valid"
+            >Enviar</ion-button
+          >
+        </div>
+        <div class="ion-text-center">
+          <label class="error-message">{{errorMessage}}</label>
+        </div>
+      </form>
+      <div class="ion-text-center">
+        <p class="go-to-login ">
+          Tienes una cuenta? <a (click)="goToLoginPage()" class="a">Iniciar sesión.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</ion-content>

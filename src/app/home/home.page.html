@@ -1,0 +1,78 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title>
+      <div classs="ion-text-center">
+        {{name}}
+        <button (click)="logout()">
+          <ion-icon name="log-in" style="zoom: 1.5" color="secondary"></ion-icon
+          >Cerrar sesión
+        </button>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="home-container">
+  <div class="map-wrapper" style="height: 1%">
+    <div #map id="map" style="height: 1%"></div>
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let chat of Chats" lines="full">
+      <ion-label
+        ><strong>{{chat.message}}</strong>
+        <p>{{chat.name}}</p>
+        <p>{{chat.location}}</p>
+        </ion-label
+      >
+      <ion-thumbnail>
+        <img src="{{chat.photo}}" />
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer color="secondary">
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Mensaje</ion-label>
+      <ion-input formControlName="message" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-button
+      class="ion-margin-top"
+      type="submit"
+      expand="block"
+      color="success"
+    >
+      Enviar mensaje de texto</ion-button
+    >
+  </form>
+
+  <ion-button color="primary" size="medium">
+    <ion-label>Enviar Foto</ion-label>
+    <input type="file" (change)="uploadImage($event.target.files)" />
+  </ion-button>
+  <!-- File upload progress bar -->
+  <div *ngIf="percentageVal | async as percentage">
+    Progress: {{ percentage | number }}%
+    <ion-progress-bar value="{{ percentage / 100 }}"></ion-progress-bar>
+  </div>
+
+  <div *ngIf="trackSnapshot | async as snap">
+    File size: {{ snap.totalBytes | formatFileSize }} Data transfered: {{
+    snap.bytesTransferred | formatFileSize }}
+  </div>
+
+  <div>
+    <form (ngSubmit)="sendLocation()">
+      <ion-button
+        class="ion-margin-top"
+        type="submit"
+        expand="block"
+        color="tertiary"
+      >
+        Enviar mi ubicación</ion-button
+      >
+    </form>
+  </div>
+</ion-footer>
